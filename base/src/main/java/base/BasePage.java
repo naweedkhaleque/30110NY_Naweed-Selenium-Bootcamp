@@ -36,7 +36,7 @@ public class BasePage {
 
     Map<Object, String> dbConfig = BaseConfig.databaseConfig();
     public static final String DATA_PATH = System.getProperty("user.dir") + File.separator + "src" + File.separator
-            + "test" + File.separator + "resources" + File.separator + "test_data.xlsx";
+            + "test" + File.separator + "resources" + File.separator + "bootcamp_test_data.xlsx";
     public static ExcelData excel;
     public static Database db;
     public static WebDriver driver;
@@ -232,6 +232,11 @@ public class BasePage {
         driver.switchTo().frame(frame);
     }
 
+    public void switchToIFrame(WebElement frame) {
+        webDriverWait.until(ExpectedConditions.visibilityOf(frame));
+        driver.switchTo().frame(frame);
+    }
+
     public void switchToTab() {
         String parentHandle = driver.getWindowHandle();
 
@@ -263,6 +268,10 @@ public class BasePage {
     public void jsClickOnElement(WebElement element) {
         jsDriver = (JavascriptExecutor) (driver);
         jsDriver.executeScript("arguments[0].click();", element);
+    }
+
+    public void jsScrollDownUntilElementIsVisible(WebElement element) {
+        jsDriver.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public void safeClickOnElement(WebElement element) {
