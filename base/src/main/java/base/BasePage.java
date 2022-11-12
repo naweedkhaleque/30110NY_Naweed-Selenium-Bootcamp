@@ -23,6 +23,8 @@ import reporting.ExtentTestManager;
 import utils.Database;
 import utils.ExcelData;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.time.Duration;
@@ -45,6 +47,8 @@ public class BasePage {
     public static Wait<WebDriver> fluentWait;
     public static ExtentReports extent;
     public static JavascriptExecutor jsDriver;
+
+    private static Robot robot;
 
     public BasePage() {
         dataInit();
@@ -291,6 +295,16 @@ public class BasePage {
         jsDriver.executeScript("arguments[0].setAttribute('" + attribute + "', '" + value + "')", driver.findElement(by));
 
         return driver.findElement(by);
+    }
+
+    public void pressEnterKey() {
+        try {
+            robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
     }
 
     // endregion
