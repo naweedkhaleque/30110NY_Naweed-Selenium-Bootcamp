@@ -14,4 +14,14 @@ public class TestSearching extends BasePage {
 
         Assert.assertEquals(searchResultsPage.getPriceDropdownText(), expectedText);
     }
+
+//    @Test(dataProviderClass = data_providers.DataProviders.class, dataProvider = "testCustomizedSearch")
+//    public void testNarrowSearch(String secondSearchTerm, String expectedText) {
+//        HomePage homePage = new HomePage();
+//        SearchResultsPage searchResultsPage = homePage.doSearch(secondSearchTerm);
+//
+//        searchResultsPage.doNarrowSearch();
+//
+//        Assert.assertEquals(searchResultsPage.getFirstPropertyTitleText(), expectedText);
+//    }
 }

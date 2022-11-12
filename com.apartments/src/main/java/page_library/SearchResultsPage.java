@@ -8,14 +8,21 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class SearchResultsPage extends BasePage {
+
+    @FindBy(id = "searchBarLookup")
+    public WebElement searchResultsPageSearchBox;
+
     @FindBy(id = "rentRangeLink")
     public WebElement priceDropdown;
 
-    @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='minRentOptions js-minRentOptions active']//li")
-    public List<WebElement> priceOptions;
-
     @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='minRentOptions js-minRentOptions active']//li[1]")
     public WebElement noMinPriceOption;
+
+    @FindBy(xpath = "//ul[@id='maxRentOptions']/li[2]")
+    public WebElement maxPriceOption;
+
+    @FindBy(id = "bedRangeLink")
+    public WebElement numOfBedsDropdown;
 
     @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='minBedOptions active']//li[1]")
     public WebElement noMinBedsOption;
@@ -23,41 +30,32 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='maxBedOptions active']//li[4]")
     public WebElement maxTwoBeds;
 
+    @FindBy(id = "typeSelect")
+    public WebElement typeDropdown;
+
     @FindBy(xpath = "//div[@class='drop-down-container mortar-wrapper active']//div[@data-value='1']/a")
-    public WebElement typeApartments;
+    public WebElement typeOptionApartments;
+
+    @FindBy(id = "lifestyleControl")
+    public WebElement lifestyleDropdown;
 
     @FindBy(xpath = "//*[@id='lifestyleControl']/fieldset/span/span[1]/a")
-    public WebElement lifestyleStudent;
+    public WebElement lifestyleOptionStudent;
+
+    @FindBy(id = "moveInLink")
+    public WebElement moveInDateDropdown;
 
     @FindBy(xpath = "//div[@id='datepickerSearch']/div/div[1]/table/thead/tr[1]/th[2]")
     public WebElement nextMonthButton;
 
     @FindBy(xpath = "//div[@id='datepickerSearch']/div/div[1]/table/tbody/tr[2]/td[2]")
-    public WebElement moveInDateManhattan;
-
-    @FindBy(id = "bedRangeLink")
-    public WebElement numOfBedsDropdown;
-
-    @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='minBedOptions active']//li")
-    public List<WebElement> numOfBedsOptions;
-
-    @FindBy(id = "typeSelect")
-    public WebElement typeDropdown;
-
-    @FindBy(xpath = "//div[@class='drop-down-container mortar-wrapper active']//div[@data-path]")
-    public WebElement typeOptions;
-
-    @FindBy(id = "lifestyleControl")
-    public WebElement lifestyleDropdown;
-
-    @FindBy(xpath = "//fieldset[@class='drop-down-container active']//span[@class='radioGroup']//span//input[@type='radio']")
-    public WebElement lifestyleOptions;
-
-    @FindBy(id = "moveInLink")
-    public WebElement moveInDateDropdown;
+    public WebElement moveInDateSelection;
 
     @FindBy(id = "advancedFiltersIcon")
     public WebElement moreDropdown;
+
+    @FindBy(id = "_baths")
+    public WebElement anyBathsOption;
 
     @FindBy(xpath = "//*[@id='advancedFilterUnitAmenities']/li[1]/a")
     public WebElement airConditioning;
@@ -74,6 +72,27 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//*[@id='advancedFilters']/section/button[1]")
     public WebElement saveButton;
 
+    @FindBy(xpath = "//div[@id='placardContainer']/ul/li[1]/article/header/div[3]/a")
+    public WebElement favoritesButton1;
+
+    @FindBy(xpath = "//div[@id='placardContainer']/ul/li[2]/article/header/div[3]/a")
+    public WebElement favoritesButton2;
+
+    @FindBy(xpath = "//div[@id='notificationsFavorites']/i[1]")
+    public WebElement seeFavoritesButton;
+
+    @FindBy(id = "backToSearch")
+    public WebElement backToSearchButton;
+
+    @FindBy(xpath = "//div[@id='noFavoritesYetModal']/div/div/h3")
+    public WebElement noFavoritesModalText;
+
+    @FindBy(xpath = "//div[@class='property-information']/a")
+    public List<WebElement> firstPagePropertiesLinks;
+
+    @FindBy(xpath = "//div[@class='property-information']//div[@title='The Heritage by Common, New York, NY']/span")
+    public WebElement firstPropertyTitle;
+
     public SearchResultsPage() {
         PageFactory.initElements(driver, this);
     }
@@ -85,4 +104,60 @@ public class SearchResultsPage extends BasePage {
     public String getPriceDropdownText() {
         return getTrimmedElementText(priceDropdown);
     }
+
+    public void inputSearchIntoSearchBox(String searchTerm) {
+        sendKeysToElement(searchResultsPageSearchBox, searchTerm);
+    }
+    public void enterSearch(String searchTerm) {
+        safeClickOnElement(searchResultsPageSearchBox);
+        inputSearchIntoSearchBox(searchTerm);
+
+    }
+    public void clickOnSelectors(WebElement element) {
+        safeClickOnElement(element);
+    }
+
+    public void clickOnSelectorOptions(WebElement element) {
+        safeClickOnElement(element);
+    }
+
+    public void navigateToDate(WebElement element) {
+        safeClickOnElement(element);
+    }
+
+    public void clickOnDoneButton() {
+        safeClickOnElement(doneButton);
+    }
+
+    public void clickOnSaveButton() {
+        safeClickOnElement(saveButton);
+    }
+
+    public String getFirstPropertyTitleText() {
+        return getTrimmedElementText(firstPropertyTitle);
+    }
+
+    public void clickToAddFavorites(WebElement element) {
+        safeClickOnElement(element);
+    }
+
+    public void doNarrowSearch() {
+        clickOnSelectors(priceDropdown);
+        clickOnSelectorOptions(noMinPriceOption);
+        clickOnSelectorOptions(maxPriceOption);
+        clickOnSelectors(typeDropdown);
+        clickOnSelectorOptions(typeOptionApartments);
+        clickOnSelectors(lifestyleDropdown);
+        clickOnSelectorOptions(lifestyleOptionStudent);
+        clickOnSelectors(moveInDateDropdown);
+        navigateToDate(nextMonthButton);
+        navigateToDate(nextMonthButton);
+        clickOnSelectorOptions(moveInDateSelection);
+        clickOnSelectors(moreDropdown);
+        clickOnSelectorOptions(anyBathsOption);
+        jsScrollDownUntilElementIsVisible(cheapAffordability);
+        clickOnSelectorOptions(cheapAffordability);
+        clickOnDoneButton();
+    }
+
 }

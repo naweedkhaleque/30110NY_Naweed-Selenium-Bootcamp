@@ -9,4 +9,9 @@ public class DataProviders extends BasePage {
     public Object[][] getSimpleSearchTerm() {
         return excel.readStringArrays("SimpleSearch");
     }
+
+    @DataProvider(name = "testCustomizedSearch")
+    public Object[][] getSecondSearchTerm() {
+        return excel.readStringArrays("SecondSearchTerm");
+    }
 }
