@@ -5,12 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class SearchResultsPage extends BasePage {
 
-    @FindBy(id = "searchBarLookup")
-    public WebElement searchResultsPageSearchBox;
+//    @FindBy(id = "searchBarLookup")
+//    public WebElement searchResultsPageSearchBox;
 
     @FindBy(id = "rentRangeLink")
     public WebElement priceDropdown;
@@ -87,11 +85,8 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//div[@id='noFavoritesYetModal']/div/div/h3")
     public WebElement noFavoritesModalText;
 
-    @FindBy(xpath = "//div[@class='property-information']/a")
-    public List<WebElement> firstPagePropertiesLinks;
-
-    @FindBy(xpath = "//div[@class='property-information']//div[@title='The Heritage by Common, New York, NY']/span")
-    public WebElement firstPropertyTitle;
+    @FindBy(xpath = "//*[@id='placardContainer']/ul/li[2]/article/section/div/div[2]/div/div[1]/a/p[1]/span")
+    public WebElement secondPropertyTitle;
 
     public SearchResultsPage() {
         PageFactory.initElements(driver, this);
@@ -105,14 +100,13 @@ public class SearchResultsPage extends BasePage {
         return getTrimmedElementText(priceDropdown);
     }
 
-    public void inputSearchIntoSearchBox(String searchTerm) {
-        sendKeysToElement(searchResultsPageSearchBox, searchTerm);
-    }
-    public void enterSearch(String searchTerm) {
-        safeClickOnElement(searchResultsPageSearchBox);
-        inputSearchIntoSearchBox(searchTerm);
-
-    }
+//    public void inputSearchIntoSearchBox(String searchTerm) {
+//        clearSendKeysToElement(searchResultsPageSearchBox, searchTerm);
+//    }
+//    public void enterSearch(String searchTerm) {
+//        inputSearchIntoSearchBox(searchTerm);
+//        pressEnterKey();
+//    }
     public void clickOnSelectors(WebElement element) {
         safeClickOnElement(element);
     }
@@ -134,7 +128,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public String getFirstPropertyTitleText() {
-        return getTrimmedElementText(firstPropertyTitle);
+        return getTrimmedElementText(secondPropertyTitle);
     }
 
     public void clickToAddFavorites(WebElement element) {
@@ -142,6 +136,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public void doNarrowSearch() {
+        //enterSearch(searchTerm);
         clickOnSelectors(priceDropdown);
         clickOnSelectorOptions(noMinPriceOption);
         clickOnSelectorOptions(maxPriceOption);

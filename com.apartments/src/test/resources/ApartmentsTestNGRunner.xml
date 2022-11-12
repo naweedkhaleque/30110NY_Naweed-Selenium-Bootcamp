@@ -11,7 +11,11 @@
 
     <test name="smoke">
         <classes>
-            <class name="system.searching.TestSearching"/>
+            <class name="system.searching.TestSearching">
+                <methods>
+                    <include name="testNarrowSearch"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
