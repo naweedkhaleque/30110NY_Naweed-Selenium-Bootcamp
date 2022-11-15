@@ -4,11 +4,9 @@ import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SearchResultsPage extends BasePage {
-
-//    @FindBy(id = "searchBarLookup")
-//    public WebElement searchResultsPageSearchBox;
 
     @FindBy(id = "rentRangeLink")
     public WebElement priceDropdown;
@@ -16,7 +14,7 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//div[@class='dropdownContent mortar-wrapper']//ul[@class='minRentOptions js-minRentOptions active']//li[1]")
     public WebElement noMinPriceOption;
 
-    @FindBy(xpath = "//ul[@id='maxRentOptions']/li[2]")
+    @FindBy(xpath = "//ul[@id='maxRentOptions']/li[5]")
     public WebElement maxPriceOption;
 
     @FindBy(id = "bedRangeLink")
@@ -55,14 +53,14 @@ public class SearchResultsPage extends BasePage {
     @FindBy(id = "_baths")
     public WebElement anyBathsOption;
 
-    @FindBy(xpath = "//*[@id='advancedFilterUnitAmenities']/li[1]/a")
-    public WebElement airConditioning;
-
-    @FindBy(xpath = "//*[@id='advancedFilterUnitAmenities']/li[2]/a")
-    public WebElement washerAndDryer;
-
     @FindBy(id = "Specialties_128")
     public WebElement cheapAffordability;
+
+    @FindBy(id = "Specialties_64")
+    public WebElement luxuryAffordability;
+
+    @FindBy(id = "Rating_16")
+    public WebElement fiveStarRatings;
 
     @FindBy(xpath = "//*[@id='advancedFilters']/section/button[2]")
     public WebElement doneButton;
@@ -85,8 +83,20 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//div[@id='noFavoritesYetModal']/div/div/h3")
     public WebElement noFavoritesModalText;
 
-    @FindBy(xpath = "//*[@id='placardContainer']/ul/li[2]/article/section/div/div[2]/div/div[1]/a/p[1]/span")
-    public WebElement secondPropertyTitle;
+    @FindBy(xpath = "//*[@id='placardContainer']/ul/li[2]/article/header/div[1]/a")
+    public WebElement propertyTitle;
+
+    @FindBy(id = "notificationsFavoritesCount")
+    public WebElement favoritesCountHeader;
+
+    @FindBy(id = "sortSearchIcon")
+    public WebElement sortButton;
+
+    @FindBy(xpath = "//*[@id='searchResultSortMenu']/ul/li[3]")
+    public WebElement rentSortOption;
+
+    @FindBy(xpath = "//div[@id='placardContainer']/ul/li[1]/article/header/div[1]/a")
+    public WebElement wallStreetProperty;
 
     public SearchResultsPage() {
         PageFactory.initElements(driver, this);
@@ -100,13 +110,6 @@ public class SearchResultsPage extends BasePage {
         return getTrimmedElementText(priceDropdown);
     }
 
-//    public void inputSearchIntoSearchBox(String searchTerm) {
-//        clearSendKeysToElement(searchResultsPageSearchBox, searchTerm);
-//    }
-//    public void enterSearch(String searchTerm) {
-//        inputSearchIntoSearchBox(searchTerm);
-//        pressEnterKey();
-//    }
     public void clickOnSelectors(WebElement element) {
         safeClickOnElement(element);
     }
@@ -127,16 +130,61 @@ public class SearchResultsPage extends BasePage {
         safeClickOnElement(saveButton);
     }
 
-    public String getFirstPropertyTitleText() {
-        return getTrimmedElementText(secondPropertyTitle);
+    public String getPropertyTitleText() {
+        return getTrimmedElementText(propertyTitle);
     }
 
     public void clickToAddFavorites(WebElement element) {
         safeClickOnElement(element);
     }
 
+    public void clickOnFavoritesCountButton() {
+        safeClickOnElement(favoritesCountHeader);
+    }
+
+    public String getCountOfFavoritesText() {
+        return getTrimmedElementText(favoritesCountHeader);
+    }
+
+    public void clickOnSortButton() {
+        safeClickOnElement(sortButton);
+    }
+
+    public void clickOnRentSortOption() {
+        safeClickOnElement(rentSortOption);
+    }
+
+    public PropertyPage clickOnWallStreetProperty() {
+        safeClickOnElement(wallStreetProperty);
+
+        return new PropertyPage();
+    }
+
+    public PropertyPage clickOnProperty() {
+        clickOnSortButton();
+        clickOnRentSortOption();
+        //jsScrollElementIntoView(seventhProperty);
+        //safeClickOnElement(seventhProperty);
+
+        return new PropertyPage();
+    }
+
+    public void checkAddTwoFavorites() {
+        clickToAddFavorites(favoritesButton1);
+        clickToAddFavorites(favoritesButton2);
+        jsScrollElementIntoView(favoritesCountHeader);
+        clickOnFavoritesCountButton();
+    }
+
+    public void removeOneFavorite() {
+        clickToAddFavorites(favoritesButton1);
+        clickToAddFavorites(favoritesButton2);
+        jsScrollElementIntoView(favoritesCountHeader);
+        clickOnFavoritesCountButton();
+        safeClickOnElement(favoritesButton2);
+    }
+
     public void doNarrowSearch() {
-        //enterSearch(searchTerm);
         clickOnSelectors(priceDropdown);
         clickOnSelectorOptions(noMinPriceOption);
         clickOnSelectorOptions(maxPriceOption);
@@ -150,8 +198,9 @@ public class SearchResultsPage extends BasePage {
         clickOnSelectorOptions(moveInDateSelection);
         clickOnSelectors(moreDropdown);
         clickOnSelectorOptions(anyBathsOption);
-        jsScrollDownUntilElementIsVisible(cheapAffordability);
-        clickOnSelectorOptions(cheapAffordability);
+        jsScrollElementIntoView(luxuryAffordability);
+        clickOnSelectorOptions(luxuryAffordability);
+        clickOnSelectorOptions(fiveStarRatings);
         clickOnDoneButton();
     }
 

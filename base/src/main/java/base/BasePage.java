@@ -32,13 +32,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 
 public class BasePage {
 
     Map<Object, String> dbConfig = BaseConfig.databaseConfig();
     public static final String DATA_PATH = System.getProperty("user.dir") + File.separator + "src" + File.separator
-            + "test" + File.separator + "resources" + File.separator + "bootcamp_test_data.xlsx";
+            + "test" + File.separator + "resources" + File.separator + "apartments_test_data.xlsx";
     public static ExcelData excel;
     public static Database db;
     public static WebDriver driver;
@@ -274,7 +273,8 @@ public class BasePage {
         jsDriver.executeScript("arguments[0].click();", element);
     }
 
-    public void jsScrollDownUntilElementIsVisible(WebElement element) {
+    public void jsScrollElementIntoView(WebElement element) {
+        jsDriver = (JavascriptExecutor) (driver);
         jsDriver.executeScript("arguments[0].scrollIntoView();", element);
     }
 

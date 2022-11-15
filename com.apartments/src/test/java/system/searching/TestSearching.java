@@ -22,6 +22,6 @@ public class TestSearching extends BasePage {
 
         searchResultsPage.doNarrowSearch();
 
-        Assert.assertEquals(searchResultsPage.getFirstPropertyTitleText(), expectedText);
+        Assert.assertEquals(searchResultsPage.getPropertyTitleText(), expectedText);
     }
 }
