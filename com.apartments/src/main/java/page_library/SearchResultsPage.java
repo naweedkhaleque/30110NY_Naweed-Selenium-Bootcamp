@@ -94,8 +94,11 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//*[@id='searchResultSortMenu']/ul/li[3]")
     public WebElement rentSortOption;
 
-    @FindBy(xpath = "//div[@id='placardContainer']/ul/li[1]/article/header/div[1]/a")
-    public WebElement wallStreetProperty;
+    @FindBy(xpath = "//*[@id='placardContainer']/ul/li[1]/article/section/div/div[2]/div/div/a")
+    public WebElement expensiveQueensProperty;
+
+    @FindBy(xpath = "//*[@id='placardContainer']/ul/li[3]/article/header/div[1]/a")
+    public WebElement brooklynProperty;
 
     public SearchResultsPage() {
         PageFactory.initElements(driver, this);
@@ -161,8 +164,8 @@ public class SearchResultsPage extends BasePage {
         safeClickOnElement(rentSortOption);
     }
 
-    public PropertyPage clickOnWallStreetProperty() {
-        safeClickOnElement(wallStreetProperty);
+    public PropertyPage clickOnBrooklynProperty() {
+        safeClickOnElement(brooklynProperty);
 
         return new PropertyPage();
     }
@@ -170,8 +173,8 @@ public class SearchResultsPage extends BasePage {
     public PropertyPage clickOnProperty() {
         clickOnSortButton();
         clickOnRentSortOption();
-        //jsScrollElementIntoView(seventhProperty);
-        //safeClickOnElement(seventhProperty);
+        jsScrollElementIntoView(expensiveQueensProperty);
+        safeClickOnElement(expensiveQueensProperty);
 
         return new PropertyPage();
     }
