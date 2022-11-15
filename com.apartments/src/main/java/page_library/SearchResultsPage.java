@@ -4,7 +4,6 @@ import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SearchResultsPage extends BasePage {
 
@@ -146,6 +145,14 @@ public class SearchResultsPage extends BasePage {
         return getTrimmedElementText(favoritesCountHeader);
     }
 
+    public void clickToSeeFavorites() {
+        safeClickOnElement(seeFavoritesButton);
+    }
+
+    public String getNoFavoritesYetModalText() {
+        return getTrimmedElementText(noFavoritesModalText);
+    }
+
     public void clickOnSortButton() {
         safeClickOnElement(sortButton);
     }
@@ -176,11 +183,12 @@ public class SearchResultsPage extends BasePage {
         clickOnFavoritesCountButton();
     }
 
-    public void removeOneFavorite() {
+    public void removeFavorites() {
         clickToAddFavorites(favoritesButton1);
         clickToAddFavorites(favoritesButton2);
         jsScrollElementIntoView(favoritesCountHeader);
         clickOnFavoritesCountButton();
+        safeClickOnElement(favoritesButton1);
         safeClickOnElement(favoritesButton2);
     }
 
