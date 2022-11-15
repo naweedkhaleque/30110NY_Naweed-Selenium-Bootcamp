@@ -32,7 +32,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 
 public class BasePage {
 
@@ -274,7 +273,7 @@ public class BasePage {
         jsDriver.executeScript("arguments[0].click();", element);
     }
 
-    public void jsScrollDownUntilElementIsVisible(WebElement element) {
+    public void jsScrollElementIntoView(WebElement element) {
         jsDriver.executeScript("arguments[0].scrollIntoView();", element);
     }
 
