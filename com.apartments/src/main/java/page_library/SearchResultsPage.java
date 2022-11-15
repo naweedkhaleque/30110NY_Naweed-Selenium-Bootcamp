@@ -165,6 +165,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public PropertyPage clickOnBrooklynProperty() {
+        jsScrollElementIntoView(brooklynProperty);
         safeClickOnElement(brooklynProperty);
 
         return new PropertyPage();
@@ -199,6 +200,23 @@ public class SearchResultsPage extends BasePage {
         clickOnSelectors(priceDropdown);
         clickOnSelectorOptions(noMinPriceOption);
         clickOnSelectorOptions(maxPriceOption);
+        clickOnSelectors(typeDropdown);
+        clickOnSelectorOptions(typeOptionApartments);
+        clickOnSelectors(lifestyleDropdown);
+        clickOnSelectorOptions(lifestyleOptionStudent);
+        clickOnSelectors(moveInDateDropdown);
+        navigateToDate(nextMonthButton);
+        navigateToDate(nextMonthButton);
+        clickOnSelectorOptions(moveInDateSelection);
+        clickOnSelectors(moreDropdown);
+        clickOnSelectorOptions(anyBathsOption);
+        jsScrollElementIntoView(luxuryAffordability);
+        clickOnSelectorOptions(luxuryAffordability);
+        clickOnSelectorOptions(fiveStarRatings);
+        clickOnDoneButton();
+    }
+
+    public void doCustomSearchForRental() {
         clickOnSelectors(typeDropdown);
         clickOnSelectorOptions(typeOptionApartments);
         clickOnSelectors(lifestyleDropdown);
