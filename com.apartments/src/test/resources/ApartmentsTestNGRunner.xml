@@ -11,9 +11,9 @@
 
     <test name="smoke">
         <classes>
-<!--            <class name="system.searching.TestSearching"/>-->
-<!--            <class name="system.favorites.TestFavorites"/>-->
-<!--            <class name="system.review_section.TestReviews"/>-->
+            <class name="system.searching.TestSearching"/>
+            <class name="system.favorites.TestFavorites"/>
+            <class name="system.review_section.TestReviews"/>
             <class name="system.Rentals.TestRentalCalculator"/>
         </classes>
     </test>
