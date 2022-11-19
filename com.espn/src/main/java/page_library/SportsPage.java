@@ -96,7 +96,7 @@ public class SportsPage extends SharedStepsUI {
     }
 
     public String getNumberOneFighterText() {
-        jsScrollElementIntoView(numberOneFighter);
+        //jsScrollElementIntoView(numberOneFighter);
         return getTrimmedElementText(numberOneFighter);
     }
 
