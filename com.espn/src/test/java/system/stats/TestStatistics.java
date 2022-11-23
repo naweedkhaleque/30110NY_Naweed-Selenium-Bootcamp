@@ -25,7 +25,7 @@ public class TestStatistics extends BasePage {
     @Test(dataProviderClass = data_providers.DataProviders.class, dataProvider = "testLakersStats")
     public void testViewLakersStats(String expectedValue, String expectedName) {
         HomePage homePage = new HomePage();
-        homePage.systemBar.navigateToNetsPage();
+        homePage.systemBar.navigateToLakersPage();
         TeamPage teamPage = new TeamPage();
         teamPage.clickOnLakersStatsButton();
         teamPage.clickOnSeasonDropdown();

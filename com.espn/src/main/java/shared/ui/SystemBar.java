@@ -22,6 +22,9 @@ public class SystemBar extends BasePage {
     @FindBy (xpath = "//*[@id='global-nav']/ul/li[4]/div/ul[2]/li/div/ul[1]/li[3]/a")
     public WebElement netsButton;
 
+    @FindBy(xpath = "//*[@id='global-nav']/ul/li[4]/div/ul[2]/li/div/ul[5]/li[4]/a")
+    public WebElement lakersButton;
+
     @FindBy (xpath = "//li[@class='sports menu-mlb']/a[@href]")
     public WebElement mlbButton;
 
@@ -107,9 +110,9 @@ public class SystemBar extends BasePage {
         return getTrimmedElementText(metsButton);
     }
 
-    public TeamPage navigateToNetsPage() {
+    public TeamPage navigateToLakersPage() {
         hoverOverElement(nbaButton);
-        clickOnTeam(netsButton);
+        clickOnTeam(lakersButton);
 
         return new TeamPage();
     }
