@@ -7,23 +7,23 @@ import page_library.HomePage;
 
 public class TestTeamName extends BasePage {
 
-    @Test(dataProviderClass = data_providers.DataProviders.class, dataProvider = "testLakersName")
-    public void testLakersText(String expected) {
+    @Test(dataProviderClass = data_providers.DataProviders.class, dataProvider = "testNetsName")
+    public void testNetsText(String expected) {
         HomePage homePage = new HomePage();
 
         hoverOverElement(homePage.systemBar.nbaButton);
 
-        Assert.assertEquals(homePage.systemBar.getLakersText(), expected);
+        Assert.assertEquals(homePage.systemBar.getNetsText(), expected);
 
     }
 
-    @Test (dataProviderClass = data_providers.DataProviders.class, dataProvider = "testYankeesName")
-    public void testYankeesText(String expected) {
+    @Test (dataProviderClass = data_providers.DataProviders.class, dataProvider = "testMetsName")
+    public void testMetsText(String expected) {
         HomePage homePage = new HomePage();
 
         hoverOverElement(homePage.systemBar.mlbButton);
 
-        Assert.assertEquals(homePage.systemBar.getYankeesText(), expected);
+        Assert.assertEquals(homePage.systemBar.getMetsText(), expected);
 
     }
 }

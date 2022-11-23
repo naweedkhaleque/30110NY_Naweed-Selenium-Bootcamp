@@ -5,14 +5,14 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviders extends BasePage {
 
-    @DataProvider(name = "testLakersName")
-    public Object[][] getLakersName() {
-        return excel.readStringArrays("LakersNameText");
+    @DataProvider(name = "testNetsName")
+    public Object[][] getNetsName() {
+        return excel.readStringArrays("Nets");
     }
 
-    @DataProvider(name = "testYankeesName")
-    public Object[][] getYankeesName() {
-        return excel.readStringArrays("YankeesNameText");
+    @DataProvider(name = "testMetsName")
+    public Object[][] getMetsName() {
+        return excel.readStringArrays("Mets");
     }
 
     @DataProvider(name = "testLakersSchedule")

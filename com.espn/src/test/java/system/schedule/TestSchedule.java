@@ -12,7 +12,7 @@ public class TestSchedule extends BasePage {
     @Test(dataProviderClass = data_providers.DataProviders.class, dataProvider = "testLakersSchedule")
     public void testViewLakersSchedule(String expected) {
         HomePage homePage = new HomePage();
-        TeamPage teamPage = homePage.systemBar.navigateToLakersPage();
+        TeamPage teamPage = homePage.systemBar.navigateToNetsPage();
         teamPage.clickOnLakersScheduleButton();
 
         Assert.assertEquals(teamPage.getLakersScheduleTitleText(), expected);

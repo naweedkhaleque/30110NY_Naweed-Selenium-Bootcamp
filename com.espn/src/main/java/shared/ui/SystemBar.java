@@ -4,7 +4,6 @@ import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import page_library.SearchResultsPage;
 import page_library.SportsPage;
 import page_library.TeamPage;
@@ -20,14 +19,14 @@ public class SystemBar extends BasePage {
     @FindBy (xpath = "//li[@class='sports menu-nba']/a[@href]")
     public WebElement nbaButton;
 
-    @FindBy (xpath = "//*[@id='global-nav']/ul/li[4]/div/ul[2]/li/div/ul[5]/li[4]/a")
-    public WebElement lakersButton;
+    @FindBy (xpath = "//*[@id='global-nav']/ul/li[4]/div/ul[2]/li/div/ul[1]/li[3]/a")
+    public WebElement netsButton;
 
     @FindBy (xpath = "//li[@class='sports menu-mlb']/a[@href]")
     public WebElement mlbButton;
 
-    @FindBy (xpath = "//li[@class='teams mlb']//ul[1]//li[4]/a[@href]")
-    public WebElement yankeesButton;
+    @FindBy (xpath = "//*[@id='global-nav']/ul/li[6]/div/ul[2]/li/div/ul[4]/li[4]/a")
+    public WebElement metsButton;
 
     @FindBy (xpath = "//*[@id='global-nav']/ul/li[6]/a")
     public WebElement soccerButton;
@@ -100,17 +99,17 @@ public class SystemBar extends BasePage {
         safeClickOnElement(secondSearchButton);
     }
 
-    public String getLakersText() {
-        return getTrimmedElementText(lakersButton);
+    public String getNetsText() {
+        return getTrimmedElementText(netsButton);
     }
 
-    public String getYankeesText() {
-        return getTrimmedElementText(yankeesButton);
+    public String getMetsText() {
+        return getTrimmedElementText(metsButton);
     }
 
-    public TeamPage navigateToLakersPage() {
+    public TeamPage navigateToNetsPage() {
         hoverOverElement(nbaButton);
-        clickOnTeam(lakersButton);
+        clickOnTeam(netsButton);
 
         return new TeamPage();
     }
