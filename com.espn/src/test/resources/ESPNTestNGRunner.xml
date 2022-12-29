@@ -9,4 +9,17 @@
     <parameter name="browser" value="chrome"/>
     <parameter name="url" value="http://espn.com"/>
 
+    <test name="smoke">
+        <classes>
+            <class name="system.add_favorite.TestAddFavorite"/>
+            <class name="system.schedule.TestSchedule"/>
+            <class name="system.scores.TestScores"/>
+            <class name="system.searching.TestSearching"/>
+            <class name="system.stats.TestStatistics"/>
+            <class name="system.team_names.TestTeamName"/>
+            <class name="system.ufc_p4p_rankings.TestUfcRankings"/>
+            <class name="system.wwe.TestWweHistory"/>
+        </classes>
+    </test>
+
 </suite>
