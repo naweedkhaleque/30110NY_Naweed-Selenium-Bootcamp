@@ -7,6 +7,9 @@ import shared.SharedStepsUI;
 
 public class MotorcyclesPage extends SharedStepsUI {
 
+    @FindBy(name = "MOTORCYCLE")
+    public WebElement motorcyclesTab;
+
     @FindBy(name = "Make")
     public WebElement allMakesDropdown;
 
@@ -18,6 +21,10 @@ public class MotorcyclesPage extends SharedStepsUI {
 
     @FindBy(xpath = "//button[text() = 'Find Vehicle']")
     public WebElement findAVehicleButton;
+
+    public void clickOnMotorcyclesTab() {
+        safeClickOnElement(motorcyclesTab);
+    }
 
     public void clickOnAllMakesDropdown() {
         safeClickOnElement(allMakesDropdown);

@@ -24,12 +24,26 @@ public class SearchResultsPage extends SharedStepsUI {
     @FindBy(xpath = "//div[@id='srp-river-results']//ul//li[@class='s-item s-item__pl-on-bottom' or @class='s-item s-item__pl-on-bottom s-item__before-answer']//div[@class='s-item__info clearfix']/a")
     public List<WebElement> products;
 
+    @FindBy(xpath = "//h1[@class='bhp__title']")
+    public WebElement itemTitle;
+
+    @FindBy(xpath = "//h1[@class='b-pageheader']/span")
+    public WebElement categoryTitle;
+
     public SearchResultsPage() {
         PageFactory.initElements(driver, this);
     }
 
     public String getResultsText() {
         return getTrimmedElementText(searchResultText);
+    }
+
+    public String getItemNameText() {
+        return getTrimmedElementText(itemTitle);
+    }
+
+    public String getCategoryTitleText() {
+        return getTrimmedElementText(categoryTitle);
     }
 
     public void clickOnBuyItNowTab() {
@@ -40,6 +54,7 @@ public class SearchResultsPage extends SharedStepsUI {
         safeClickOnElement(conditionDropdown);
     }
 
+
     public ItemPage selectProduct(List<WebElement> elements, int optionIndex) {
         try {
             safeClickOnElement(elements.get(optionIndex));
@@ -49,4 +64,7 @@ public class SearchResultsPage extends SharedStepsUI {
 
         return new ItemPage();
     }
+
+
+
 }
